@@ -50,7 +50,6 @@ def get_fire_weather(lat, lon):
         print("Error fetching weather data.")
 
 
-
 if __name__ == "__main__":
     city_name = input("Enter city name: ")
     lat, lon = get_coordinates(city_name)
