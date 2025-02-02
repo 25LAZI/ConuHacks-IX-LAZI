@@ -52,6 +52,10 @@ nav a {
     margin: 20px;  /* Space around the section (top, right, bottom, left) */
     padding: 20px;  /* Inner space within the section */
     border: 1px solid #ccc;
+    width: 90%;
+    height: 100vh;  /* Takes 90% of the viewport height */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Title styling */
@@ -71,15 +75,33 @@ nav a {
 /* Search bar styling */
 .search-bar {
     padding: 10px;
-    width: 200px;  /* Set width for the search bar */
+    width: 450px;  /* Set width for the search bar */
     margin-right: 10px;  /* Space between input and button */
+    border-radius: 15px;
+    border: 1px solid #400000;
 }
+
+#search-country {
+     width: 250px;
+}
+
+/*.search-dropdown {
+    padding: 10px;
+    width: 120px;
+    margin-right: 10px;
+    cursor: pointer
+    border-radius: 20px;
+    border: 1px solid #400000;
+    appearance: none;
+}*/
 
 /* Search button styling */
 .search-btn {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+    border-radius: 20px;
+    border: none;
 }
 
 /* Content layout (map and list) */
@@ -87,20 +109,26 @@ nav a {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
+    gap: 40px;
+
 }
 
 /* Map section styling */
 .map {
-    width: 48%;  /* Adjust the map width */
+    width: 60%;  /* Adjust the map width */
     background-color: #f0f0f0;
     padding: 10px;
+    height: 100%;  /* Make it fill the content area */
+    min-height: 400px;
 }
 
 /* List section styling */
 .list {
-    width: 48%;  /* Adjust the list width */
+    width: 30%;  /* Adjust the list width */
     background-color: #f9f9f9;
     padding: 10px;
+    height: 100%;  /* Make it fill the content area */
+    min-height: 400px;
 }
 
 .list ul {
@@ -110,7 +138,7 @@ nav a {
 
 .list li {
     padding: 10px;
-    border-bottom: 1px solid #ddd;
+    border: none;
 }
 
 
