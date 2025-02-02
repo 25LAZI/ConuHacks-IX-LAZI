@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<header>
+       <div class="container1">
+            <img src="{% static 'images/FireTracker.png' %}" alt="logo" class="logo">
+
+            <nav>
+                <ul>
+                    <li><a href="{% url 'analyzing' %}">Start Analyzing</a></li>
+                    <li><a href="#">About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+<div class="container1">
+        <!-- Title -->
+        <h1>NameCITY</h1>
+
+        <!-- City Data Block -->
+        <div class="city-data">
+            <h2>City Components</h2>
+            <div class="data">
+                <div class="data-item">
+                    <h3>Temperature</h3>
+                    <p>25°C</p>
+                </div>
+                <div class="data-item">
+                    <h3>Humidity</h3>
+                    <p>60%</p>
+                </div>
+                <div class="data-item">
+                    <h3>Wind Speed</h3>
+                    <p>15 km/h</p>
+                </div>
+                <div class="data-item">
+                    <h3>Precipitation</h3>
+                    <p>5 mm</p>
+                </div>
+                <div class="data-item">
+                    <h3>Fire Weather Index</h3>
+                    <p>High</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fire Stations Block -->
+        <div class="fire-stations">
+            <h2>Closest Fire Stations</h2>
+            <ul>
+                <li>Fire Station 1: 5 km</li>
+                <li>Fire Station 2: 8 km</li>
+                <li>Fire Station 3: 12 km</li>
+            </ul>
+        </div>
+    </div>
+
+
+</body>
+</html>

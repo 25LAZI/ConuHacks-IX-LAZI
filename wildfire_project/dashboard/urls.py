@@ -1,9 +1,9 @@
 from django.urls import path
-from . import views
+from .views import index, fire_weather, analyzing, city
 
 urlpatterns = [
-    path('', views.index, name='index'),  # Main dashboard view
-
-
-
+    path("", index, name="index"),
+    path("fire-weather/", fire_weather, name="fire-weather"),
+    path("analyzing/", analyzing, name="analyzing"),
+    path("city/", city, name="city"),
 ]

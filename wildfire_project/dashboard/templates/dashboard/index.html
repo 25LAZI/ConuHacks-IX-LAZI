@@ -15,7 +15,7 @@
 
             <nav>
                 <ul>
-                    <li><a href="#">Start Analyzing</a></li>
+                    <li><a href="{% url 'analyzing' %}">Start Analyzing</a></li>
                     <li><a href="#">About Us</a></li>
                 </ul>
             </nav>
@@ -26,12 +26,13 @@
         <h1>Welcome to FireTracker</h1>
 
         <!-- Search bar and button -->
-        <div class="search-container">
-            <input type="text" class="search-bar" placeholder="Search city...">
-            <input type="text" id="search-country" class="search-bar" placeholder="Search country...">
-
-            <button class="search-btn">Search</button>
-        </div>
+        <form action="{% url 'fire-weather' %}" method="GET">
+            <div class="search-container">
+                <input type="text" name="city" class="search-bar" placeholder="Search city..." required>
+                <input type="text" name="country" class="search-bar" placeholder="Search country (Optional)">
+                <button type="submit" class="search-btn">Search</button>
+            </div>
+        </form>
 
         <!-- Main content layout -->
         <h1>Fire prediction in QC</h1>
@@ -59,6 +60,16 @@
     </section>
 
 
+<script>
+console.log("test");
+   function goCityPage(event) {
+   console.log("test1");
+        event.preventDefault();
+        var searchQuery = document.getElementById('searchInput').value;
+        console.log("hello");
+        window.location.href = "{% url 'city' %}?search=" + searchQuery;
+    }
+</script>
 
 
 

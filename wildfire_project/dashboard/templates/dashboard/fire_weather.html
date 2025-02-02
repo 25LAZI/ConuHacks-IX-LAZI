@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fire Weather Results</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <img src="{% static 'images/FireTracker.png' %}" alt="logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="{% url 'index' %}">Back to Home</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="main-section">
+        <h1>Fire Weather Report</h1>
+
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% else %}
+            <h2>Location: {{ city }}, {{ country }}</h2>
+            <p><strong>Temperature:</strong> {{ temperature }}°C</p>
+            <p><strong>Humidity:</strong> {{ humidity }}%</p>
+            <p><strong>Wind Speed:</strong> {{ wind_speed }} m/s</p>
+            <p><strong>Precipitation:</strong> {{ precipitation }} mm</p>
+            <p><strong>Estimated FWI:</strong> {{ estimated_fwi }}</p>
+            <p><strong>Risk Level:</strong> {{ risk_level }}</p>
+        {% endif %}
+
+        <!-- Search Again -->
+        <form action="{% url 'fire-weather' %}" method="GET">
+            <div class="search-container">
+                <input type="text" name="city" class="search-bar" placeholder="Search another city..." required>
+                <input type="text" name="country" class="search-bar" placeholder="Search country (Optional)">
+                <button type="submit" class="search-btn">Search</button>
+            </div>
+        </form>
+
+    </section>
+
+</body>
+</html>

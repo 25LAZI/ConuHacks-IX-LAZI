@@ -47,6 +47,10 @@ nav a {
     color: #400000;
 }
 
+nav a:hover {
+    text-decoration: underline #400000;
+}
+
 /* Main section styling */
 .main-section {
     margin: 20px;  /* Space around the section (top, right, bottom, left) */
@@ -85,16 +89,6 @@ nav a {
      width: 250px;
 }
 
-/*.search-dropdown {
-    padding: 10px;
-    width: 120px;
-    margin-right: 10px;
-    cursor: pointer
-    border-radius: 20px;
-    border: 1px solid #400000;
-    appearance: none;
-}*/
-
 /* Search button styling */
 .search-btn {
     padding: 10px 20px;
@@ -102,7 +96,14 @@ nav a {
     cursor: pointer;
     border-radius: 20px;
     border: none;
+    background-color: #400000;
+    color: white;
 }
+.search-btn:hover {
+  background-color: #b10000;
+  color: white;
+}
+
 
 /* Content layout (map and list) */
 .content {
@@ -142,5 +143,86 @@ nav a {
 }
 
 
+/*city file*/
 
+.container1 {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
 
+/* Title Styling */
+.container1 h1 {
+    text-align: center;
+    font-size: 40px;
+    color: #400000;
+}
+
+/* City Data Block Styling */
+.city-data {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.city-data h2 {
+    font-size: 30px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Data Items Styling */
+.data {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.data-item {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 10px;
+    width: 180px;
+    text-align: center;
+}
+
+.data-item h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.data-item p {
+    font-size: 20px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Fire Stations Block Styling */
+.fire-stations {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.fire-stations h2 {
+    font-size: 30px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.fire-stations ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.fire-stations li {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 10px;
+}
