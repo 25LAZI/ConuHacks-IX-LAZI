@@ -1,11 +1,10 @@
 import requests
 
-# Replace with your OpenWeather API Key
 API_KEY = "a8935096c1502ae040183908562c2db2"
 
-# API Endpoints
 GEOCODE_URL = "http://api.openweathermap.org/geo/1.0/direct"
 WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
+
 
 def get_coordinates(city):
     """Fetch latitude and longitude for a given city."""
@@ -18,6 +17,7 @@ def get_coordinates(city):
     else:
         print("Error fetching location. Check city name or API key.")
         return None, None
+
 
 def get_fire_weather(lat, lon):
     """Fetch fire weather data based on coordinates."""
@@ -50,7 +50,7 @@ def get_fire_weather(lat, lon):
         print("Error fetching weather data.")
 
 
-if __name__ == "__main__":
+if __name__ == "main":
     city_name = input("Enter city name: ")
     lat, lon = get_coordinates(city_name)
 
