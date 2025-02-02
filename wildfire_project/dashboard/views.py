@@ -3,6 +3,11 @@ from django.http import HttpResponse
 import requests
 import pyrebase
 
+
+
+
+
+
 # Firebase configuration
 config = {
     "apiKey": "AIzaSyBds96dPAAEGuzNKzfZDoIvZacCjmPN67U",
@@ -23,8 +28,6 @@ GEOCODE_URL = "https://api.openweathermap.org/geo/1.0/direct"
 WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather"
 
 
-def index(request):
-    return render(request, 'dashboard/index.html')
 
 
 def fire_weather(request):
@@ -108,13 +111,4 @@ def city(request):
     return render(request, 'dashboard/city.html')
 
 
-def test_firebase(request):
-    """Test Firebase connection by pushing and retrieving data."""
-    # Write data to Firebase
-    data = {"name": "Test User", "email": "testuser@example.com"}
-    database.child("users").push(data)
 
-    # Read data from Firebase
-    users = database.child("users").get().val()
-
-    return HttpResponse(f"Users in database: {users}")
