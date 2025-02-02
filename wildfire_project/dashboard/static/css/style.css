@@ -1,0 +1,118 @@
+body {
+    margin: 0;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 300;
+}
+.container {
+    margin: 0 auto;
+}
+header {
+    background: white;
+}
+
+header::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.logo {
+    float: left;
+    width: auto;
+    height: 65px;
+
+}
+
+nav {
+    float: right;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav li  {
+    display: inline-block;
+    margin-left: 70px;
+    padding-top: 25px;
+    padding-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #400000;
+}
+
+/* Main section styling */
+.main-section {
+    margin: 20px;  /* Space around the section (top, right, bottom, left) */
+    padding: 20px;  /* Inner space within the section */
+    border: 1px solid #ccc;
+}
+
+/* Title styling */
+.main-section h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+    margin-top: 0;
+    color: #400000
+}
+
+/* Search bar and button container */
+.search-container {
+    text-align: center;  /* Center the search bar and button */
+    margin-bottom: 20px;
+}
+
+/* Search bar styling */
+.search-bar {
+    padding: 10px;
+    width: 200px;  /* Set width for the search bar */
+    margin-right: 10px;  /* Space between input and button */
+}
+
+/* Search button styling */
+.search-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Content layout (map and list) */
+.content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* Map section styling */
+.map {
+    width: 48%;  /* Adjust the map width */
+    background-color: #f0f0f0;
+    padding: 10px;
+}
+
+/* List section styling */
+.list {
+    width: 48%;  /* Adjust the list width */
+    background-color: #f9f9f9;
+    padding: 10px;
+}
+
+.list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.list li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+
+
+
