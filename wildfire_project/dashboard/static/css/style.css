@@ -85,16 +85,6 @@ nav a {
      width: 250px;
 }
 
-/*.search-dropdown {
-    padding: 10px;
-    width: 120px;
-    margin-right: 10px;
-    cursor: pointer
-    border-radius: 20px;
-    border: 1px solid #400000;
-    appearance: none;
-}*/
-
 /* Search button styling */
 .search-btn {
     padding: 10px 20px;
@@ -102,7 +92,14 @@ nav a {
     cursor: pointer;
     border-radius: 20px;
     border: none;
+    background-color: #400000;
+    color: white;
 }
+.search-btn:hover {
+  background-color: #b10000;
+  color: white;
+}
+
 
 /* Content layout (map and list) */
 .content {
@@ -142,5 +139,6 @@ nav a {
 }
 
 
+/*Analyzing file*/
 
 

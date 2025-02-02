@@ -17,7 +17,8 @@ database = firebase.database()
 def index(request):
     return render(request, 'dashboard/index.html')
 
-
+def analyzing(request):
+    return render(request, 'dashboard/analyzing.html')
 def test_firebase(request):
     # Write data to Firebase
     data = {"name": "Test User", "email": "testuser@example.com"}
