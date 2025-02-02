@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FireTracker</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -12,9 +12,10 @@
     <header>
        <div class="container">
             <img src="{% static 'images/FireTracker.png' %}" alt="logo" class="logo">
+
             <nav>
                 <ul>
-                    <li><a href="#">Start Analyzing</a></li>
+                    <li><a href="{% url 'analyzing' %}">Start Analyzing</a></li>
                     <li><a href="#">About Us</a></li>
                 </ul>
             </nav>
@@ -24,7 +25,7 @@
     <section class="main-section">
         <h1>Welcome to FireTracker</h1>
 
-        <!-- Search Form -->
+        <!-- Search bar and button -->
         <form action="{% url 'fire-weather' %}" method="GET">
             <div class="search-container">
                 <input type="text" name="city" class="search-bar" placeholder="Search city..." required>
@@ -33,7 +34,42 @@
             </div>
         </form>
 
+        <!-- Main content layout -->
+        <div class="content">
+            <div class="map">
+                <p>Map would go here</p>
+            </div>
+            <div class="list">
+                 <h2>Reported Fires</h2>
+                <ul>
+                    <li>Location 1</li>
+                    <li>Location 2</li>
+                    <li>Location 3</li>
+                </ul>
+
+                 <h2>Vulnerable Zones</h2>
+                <ul>
+                    <li>Location 1</li>
+                    <li>Location 2</li>
+                    <li>Location 3</li>
+                </ul>
+            </div>
+        </div>
     </section>
+
+
+<script>
+console.log("test");
+   function goCityPage(event) {
+   console.log("test1");
+        event.preventDefault();
+        var searchQuery = document.getElementById('searchInput').value;
+        console.log("hello");
+        window.location.href = "{% url 'city' %}?search=" + searchQuery;
+    }
+</script>
+
+
 
 </body>
 </html>
