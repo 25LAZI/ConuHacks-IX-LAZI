@@ -30,7 +30,7 @@
             <input type="text" class="search-bar" placeholder="Search city...">
             <input type="text" id="search-country" class="search-bar" placeholder="Search country...">
 
-            <button class="search-btn">Search</button>
+            <button class="search-btn" id="searchInput" onclick="goCityPage(event)">Search</button>
         </div>
 
         <!-- Main content layout -->
@@ -57,6 +57,16 @@
     </section>
 
 
+<script>
+console.log("test");
+   function goCityPage(event) {
+   console.log("test1");
+        event.preventDefault();
+        var searchQuery = document.getElementById('searchInput').value;
+        console.log("hello");
+        window.location.href = "{% url 'city' %}?search=" + searchQuery;
+    }
+</script>
 
 
 

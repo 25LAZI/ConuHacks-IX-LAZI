@@ -19,6 +19,10 @@ def index(request):
 
 def analyzing(request):
     return render(request, 'dashboard/analyzing.html')
+
+def city(request):
+    search_query = request.GET.get('search', '')
+    return render(request, 'dashboard/city.html', {'search_query': search_query})
 def test_firebase(request):
     # Write data to Firebase
     data = {"name": "Test User", "email": "testuser@example.com"}
