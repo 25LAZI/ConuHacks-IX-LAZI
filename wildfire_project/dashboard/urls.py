@@ -1,7 +1,8 @@
 from django.urls import path
 from . import views
+from .views import index, fire_weather
 
 urlpatterns = [
-    path('', views.index, name='index'),  # Main dashboard view
-    path('test-firebase/', views.test_firebase, name='test_firebase'),
+    path("", index, name="index"),
+    path("fire-weather/", fire_weather, name="fire-weather"),
 ]

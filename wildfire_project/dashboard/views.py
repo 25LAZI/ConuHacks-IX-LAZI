@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.http import JsonResponse
+import requests
 import pyrebase
 
 config = {
@@ -14,9 +16,70 @@ config = {
 firebase = pyrebase.initialize_app(config)
 database = firebase.database()
 
+API_KEY = "a8935096c1502ae040183908562c2db2"
+
+GEOCODE_URL = "https://api.openweathermap.org/geo/1.0/direct"
+WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather"
+
 def index(request):
     return render(request, 'dashboard/index.html')
 
+
+def fire_weather(request):
+    city = request.GET.get("city", "").strip()
+    country = request.GET.get("country", "").strip().upper()
+
+    if not city:
+        return redirect("index")  # Redirect back if no city is provided
+
+    lat, lon = get_coordinates(city, country)
+    if not lat or not lon:
+        return render(request, "dashboard/fire_weather.html", {"error": "City not found", "city": city, "country": country})
+
+    weather_data = get_weather_data(lat, lon)
+    if not weather_data:
+        return render(request, "dashboard/fire_weather.html", {"error": "Weather data not available", "city": city, "country": country})
+
+    return render(request, "dashboard/fire_weather.html", {
+        "city": city,
+        "country": country,
+        **weather_data
+    })
+
+def get_weather_data(lat, lon):
+    """Fetch weather data and calculate estimated Fire Weather Index (eFWI)."""
+    params = {"lat": lat, "lon": lon, "appid": API_KEY, "units": "metric"}
+    response = requests.get(WEATHER_URL, params=params)
+
+    if response.status_code == 200:
+        data = response.json()
+        temp = data["main"]["temp"]
+        humidity = data["main"]["humidity"]
+        wind_speed = data["wind"]["speed"]
+        precipitation = data.get("rain", {}).get("1h", 0) + data.get("snow", {}).get("1h", 0)
+
+        eFWI = (temp * wind_speed) / (humidity + precipitation) if (humidity + precipitation) > 0 else temp * wind_speed
+
+        return {
+            "temperature": temp,
+            "humidity": humidity,
+            "wind_speed": wind_speed,
+            "precipitation": precipitation,
+            "estimated_fwi": round(eFWI, 2),
+            "risk_level": "High" if eFWI > 40 else "Moderate" if eFWI > 20 else "Low"
+        }
+    return None
+
+def get_coordinates(city, country=""):
+    """Fetch latitude and longitude for a given city."""
+    location_query = f"{city},{country}" if country else city
+    params = {"q": location_query, "appid": API_KEY, "limit": 1}
+    response = requests.get(GEOCODE_URL, params=params)
+
+    if response.status_code == 200 and response.json():
+        location = response.json()[0]
+        return location["lat"], location["lon"]
+    return None, None
 
 def test_firebase(request):
     # Write data to Firebase
