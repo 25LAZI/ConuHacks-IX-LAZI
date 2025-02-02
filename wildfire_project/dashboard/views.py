@@ -21,19 +21,106 @@ config = {
 firebase = pyrebase.initialize_app(config)
 database = firebase.database()
 
-# def index(request):
-#     return render(request, 'dashboard/index.html')
 
 
-def test_firebase(request):
-    # Write data to Firebase
-    data = {"name": "Test User", "email": "testuser@example.com"}
-    database.child("users").push(data)
 
-    # Read data from Firebase
-    users = database.child("users").get().val()
 
-    return HttpResponse(f"Users in database: {users}")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def index(request):
