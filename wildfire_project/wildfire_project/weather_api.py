@@ -5,9 +5,10 @@ API_KEY = "a8935096c1502ae040183908562c2db2"
 GEOCODE_URL = "https://api.openweathermap.org/geo/1.0/direct"
 WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather"
 
-def get_coordinates(city):
+def get_coordinates(city, country=""):
     """Fetch latitude and longitude for a given city."""
-    params = {"q": city, "appid": API_KEY, "limit": 1}
+    location_query = f"{city},{country}" if country else city
+    params = {"q": location_query, "appid": API_KEY, "limit": 1}
     response = requests.get(GEOCODE_URL, params=params)
 
     if response.status_code == 200 and response.json():
@@ -59,8 +60,9 @@ def get_weather_data(lat, lon):
         print("Error fetching weather data.")
 
 if __name__ == "__main__":
-    city_name = input("Enter city name: ")
-    lat, lon = get_coordinates(city_name)
+    city_name = input("Enter city name: ").strip()
+    country = input("Enter country code (Optional, ex: CA): ").strip().upper()
+    lat, lon = get_coordinates(city_name, country)
 
     if lat and lon:
         get_weather_data(lat, lon)
