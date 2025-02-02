@@ -2,9 +2,8 @@ import requests
 
 API_KEY = "a8935096c1502ae040183908562c2db2"
 
-GEOCODE_URL = "http://api.openweathermap.org/geo/1.0/direct"
-WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
-
+GEOCODE_URL = "https://api.openweathermap.org/geo/1.0/direct"
+WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather"
 
 def get_coordinates(city):
     """Fetch latitude and longitude for a given city."""
@@ -18,30 +17,40 @@ def get_coordinates(city):
         print("Error fetching location. Check city name or API key.")
         return None, None
 
-
-def get_fire_weather(lat, lon):
-    """Fetch fire weather data based on coordinates."""
+def get_weather_data(lat, lon):
+    """Fetch weather data and calculate estimated Fire Weather Index (eFWI)."""
     params = {
         "lat": lat,
         "lon": lon,
         "appid": API_KEY,
-        "units": "metric"  # Use "imperial" for Fahrenheit
+        "units": "metric"
     }
     response = requests.get(WEATHER_URL, params=params)
 
     if response.status_code == 200:
         data = response.json()
-        print("\n🔥 Fire Weather Conditions 🔥")
-        print(f"Temperature: {data['main']['temp']}°C")
-        print(f"Humidity: {data['main']['humidity']}%")
-        print(f"Wind Speed: {data['wind']['speed']} m/s")
-        print(f"Weather: {data['weather'][0]['description']}")
+        temp = data["main"]["temp"]
+        humidity = data["main"]["humidity"]
+        wind_speed = data["wind"]["speed"]
+        precipitation = data.get("rain", {}).get("1h", 0) + data.get("snow", {}).get("1h", 0)
 
-        fwi = 0.0272 * data['main']['temp'] + 0.211 * data['main']['humidity'] - 0.7 * data['wind']['speed'] + 2.0
+        # Simplified Fire Weather Index formula
+        if humidity + precipitation > 0:
+            eFWI = (temp * wind_speed) / (humidity + precipitation)
+        else:
+            eFWI = temp * wind_speed  # Avoid division by zero
 
-        if fwi > 40:
+        print("\n🔥 Estimated Fire Weather Index (eFWI) 🔥")
+        print(f"Temperature: {temp}°C")
+        print(f"Humidity: {humidity}%")
+        print(f"Wind Speed: {wind_speed} m/s")
+        print(f"Precipitation: {precipitation} mm")
+        print(f"Estimated Fire Weather Index: {round(eFWI, 2)}")
+
+        # Risk Level (Basic Interpretation)
+        if eFWI > 40:
             print("🔥🚨 HIGH Fire Danger!")
-        elif fwi > 20:
+        elif eFWI > 20:
             print("⚠️ MODERATE Fire Risk")
         else:
             print("✅ LOW Fire Risk")
@@ -49,10 +58,9 @@ def get_fire_weather(lat, lon):
     else:
         print("Error fetching weather data.")
 
-
-if __name__ == "main":
+if __name__ == "__main__":
     city_name = input("Enter city name: ")
     lat, lon = get_coordinates(city_name)
 
     if lat and lon:
-        get_fire_weather(lat, lon)
+        get_weather_data(lat, lon)
