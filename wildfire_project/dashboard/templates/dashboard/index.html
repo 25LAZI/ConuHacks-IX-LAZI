@@ -2,11 +2,63 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FireTracker</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <h1>Dashboard</h1>
-    <p>Welcome to the dashboard</p>
-    <a href="/logout">Logout</a>
+
+    <header>
+       <div class="container">
+            <img src="{% static 'images/FireTracker.png' %}" alt="logo" class="logo">
+
+            <nav>
+                <ul>
+                    <li><a href="#">Start Analyzing</a></li>
+                    <li><a href="#">About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="main-section">
+        <h1>Welcome to FireTracker</h1>
+
+        <!-- Search bar and button -->
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Search city...">
+            <input type="text" id="search-country" class="search-bar" placeholder="Search country...">
+
+            <button class="search-btn">Search</button>
+        </div>
+
+        <!-- Main content layout -->
+        <div class="content">
+            <div class="map">
+                <p>Map would go here</p>
+            </div>
+            <div class="list">
+                 <h2>Reported Fires</h2>
+                <ul>
+                    <li>Location 1</li>
+                    <li>Location 2</li>
+                    <li>Location 3</li>
+                </ul>
+
+                 <h2>Vulnerable Zones</h2>
+                <ul>
+                    <li>Location 1</li>
+                    <li>Location 2</li>
+                    <li>Location 3</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
 </body>
 </html>
